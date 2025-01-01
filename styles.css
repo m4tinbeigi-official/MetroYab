@@ -60,3 +60,49 @@ body.dark-mode .btn-secondary {
     background-color: #555;
     border-color: #555;
 }
+
+/* استایل کارت‌ها */
+.route-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    transition: transform 0.2s;
+}
+
+.route-card:hover {
+    transform: translateY(-5px);
+}
+
+.route-card .card-body {
+    padding: 15px;
+}
+
+.route-card .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.route-card .card-text {
+    color: #666;
+}
+
+/* استایل تغییر خط */
+.line-change {
+    background-color: #fff3cd;
+    border-left: 5px solid #ffc107;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* استایل زمان سفر */
+.travel-time {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+}

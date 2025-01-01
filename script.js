@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        let routeHTML = '<h2>مسیر پیشنهادی:</h2><ul class="list-group">';
+        let routeHTML = '<h2>مسیر پیشنهادی:</h2>';
         let previousLine = null;
         let totalTime = 0;
 
@@ -105,16 +105,31 @@ document.addEventListener('DOMContentLoaded', function () {
             const currentLine = station.lines[0]; // فرض می‌کنیم هر ایستگاه حداقل یک خط دارد
 
             if (previousLine && currentLine !== previousLine) {
-                routeHTML += `<li class="list-group-item list-group-item-warning">تغییر خط از ${previousLine} به ${currentLine}</li>`;
+                routeHTML += `
+                    <div class="line-change">
+                        <i class="fas fa-exchange-alt"></i> تغییر خط از ${previousLine} به ${currentLine}
+                    </div>
+                `;
                 totalTime += 5; // 5 دقیقه برای تغییر خط
             }
 
-            routeHTML += `<li class="list-group-item" style="border-left: 5px solid ${getLineColor(currentLine)};">${station.translations.fa} (خط ${currentLine})</li>`;
+            routeHTML += `
+                <div class="route-card">
+                    <div class="card-body">
+                        <h5 class="card-title">${station.translations.fa}</h5>
+                        <p class="card-text">خط ${currentLine}</p>
+                    </div>
+                </div>
+            `;
             totalTime += 2; // 2 دقیقه برای هر ایستگاه
             previousLine = currentLine;
         });
 
-        routeHTML += `</ul><p class="mt-3">زمان تقریبی سفر: ${totalTime} دقیقه</p>`;
+        routeHTML += `
+            <div class="travel-time">
+                <i class="fas fa-clock"></i> زمان تقریبی سفر: ${totalTime} دقیقه
+            </div>
+        `;
         routeResult.innerHTML = routeHTML;
 
         // نمایش مسیر روی نقشه
