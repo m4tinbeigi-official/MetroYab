@@ -1,6 +1,8 @@
+/* استفاده از فونت وزیر */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Vazir', sans-serif;
     background-color: #f8f9fa;
+    text-align: right; /* راست‌چین کردن متن */
 }
 
 h1 {
@@ -18,4 +20,12 @@ h1 {
 
 footer {
     margin-top: 50px;
+}
+
+/* واکنشگرا کردن dropdownها */
+@media (max-width: 768px) {
+    .col-md-6 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
 }
