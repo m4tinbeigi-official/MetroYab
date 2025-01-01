@@ -63,14 +63,20 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             visited.add(current.station.id);
 
-            current.station.connections.forEach(connectionId => {
-                const neighbor = stations.find(station => station.id === connectionId);
-                if (neighbor) {
-                    queue.push({ station: neighbor, path: [...current.path, neighbor] });
-                }
+            // پیدا کردن ایستگاه‌های متصل (به‌صورت فرضی)
+            const connections = getConnections(current.station);
+            connections.forEach(neighbor => {
+                queue.push({ station: neighbor, path: [...current.path, neighbor] });
             });
         }
         return null;
+    }
+
+    // تابع فرضی برای پیدا کردن ایستگاه‌های متصل
+    function getConnections(station) {
+        // اینجا می‌توانید منطق خود را برای پیدا کردن ایستگاه‌های متصل پیاده‌سازی کنید.
+        // به‌عنوان مثال، می‌توانید ایستگاه‌های هم‌خط را به‌عنوان متصل در نظر بگیرید.
+        return stations.filter(s => s.line === station.line && s.id !== station.id);
     }
 
     // نمایش مسیر
