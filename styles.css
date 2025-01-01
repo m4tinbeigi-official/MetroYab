@@ -28,3 +28,15 @@ footer {
         margin-bottom: 15px;
     }
 }
+
+/* استایل Select2 */
+.select2-container--default .select2-selection--single {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    height: 38px;
+    padding: 5px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 36px;
+}

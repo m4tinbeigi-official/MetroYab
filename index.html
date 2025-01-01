@@ -8,6 +8,7 @@
     <meta name="author" content="مترویاب">
     <title>مترویاب - مسیریابی مترو تهران</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v30.1.0/dist/font-face.css">
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -23,13 +24,13 @@
         <div class="row">
             <div class="col-md-6">
                 <label for="source" class="form-label">ایستگاه مبدأ</label>
-                <select id="source" class="form-select">
+                <select id="source" class="form-select select2">
                     <option value="">انتخاب کنید</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="destination" class="form-label">ایستگاه مقصد</label>
-                <select id="destination" class="form-select">
+                <select id="destination" class="form-select select2">
                     <option value="">انتخاب کنید</option>
                 </select>
             </div>
@@ -40,6 +41,9 @@
         <div id="route-result" class="mt-5">
             <!-- نتیجه مسیریابی اینجا نمایش داده می‌شود -->
         </div>
+        <div id="route-image" class="mt-3 text-center">
+            <!-- تصویر مسیر اینجا نمایش داده می‌شود -->
+        </div>
     </div>
 
     <footer class="bg-dark text-white text-center py-3 mt-5">
@@ -49,6 +53,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
