@@ -40,3 +40,23 @@ footer {
 .select2-container--default .select2-selection--single .select2-selection__arrow {
     height: 36px;
 }
+
+/* حالت تاریک */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+body.dark-mode #route-result {
+    background-color: #444;
+    color: #fff;
+}
+
+body.dark-mode .navbar {
+    background-color: #222 !important;
+}
+
+body.dark-mode .btn-secondary {
+    background-color: #555;
+    border-color: #555;
+}

@@ -3,7 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const destinationSelect = document.getElementById('destination');
     const findRouteButton = document.getElementById('find-route');
     const routeResult = document.getElementById('route-result');
-    const routeImage = document.getElementById('route-image');
+    const darkModeToggle = document.getElementById('dark-mode-toggle');
+    const map = L.map('map').setView([35.6892, 51.3890], 12); // مختصات تهران
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
 
     let stations = {};
 
@@ -84,12 +89,12 @@ document.addEventListener('DOMContentLoaded', function () {
     function displayRoute(route) {
         if (!route) {
             routeResult.innerHTML = '<p class="text-danger">مسیری پیدا نشد!</p>';
-            routeImage.innerHTML = '';
             return;
         }
 
         let routeHTML = '<h2>مسیر پیشنهادی:</h2><ul class="list-group">';
         let previousLine = null;
+        let totalTime = 0;
 
         route.forEach((stationKey, index) => {
             const station = stations[stationKey];
@@ -97,17 +102,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (previousLine && currentLine !== previousLine) {
                 routeHTML += `<li class="list-group-item list-group-item-warning">تغییر خط از ${previousLine} به ${currentLine}</li>`;
+                totalTime += 5; // 5 دقیقه برای تغییر خط
             }
 
             routeHTML += `<li class="list-group-item" style="border-left: 5px solid ${getLineColor(currentLine)};">${station.translations.fa} (خط ${currentLine})</li>`;
+            totalTime += 2; // 2 دقیقه برای هر ایستگاه
             previousLine = currentLine;
         });
 
-        routeHTML += '</ul>';
+        routeHTML += `</ul><p class="mt-3">زمان تقریبی سفر: ${totalTime} دقیقه</p>`;
         routeResult.innerHTML = routeHTML;
 
-        // نمایش تصویر مسیر
-        routeImage.innerHTML = '<img src="https://via.placeholder.com/800x400.png?text=نقشه+مسیر+مترو" alt="نقشه مسیر مترو" class="img-fluid">';
+        // نمایش مسیر روی نقشه
+        const routeCoordinates = route.map(stationKey => {
+            const station = stations[stationKey];
+            return [station.latitude, station.longitude];
+        });
+
+        L.polyline(routeCoordinates, { color: 'blue' }).addTo(map);
+        map.fitBounds(routeCoordinates);
     }
 
     // تابع برای دریافت رنگ خطوط
@@ -123,4 +136,9 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         return lineColors[line] || '#000000'; // رنگ پیش‌فرض سیاه
     }
+
+    // حالت تاریک
+    darkModeToggle.addEventListener('click', function () {
+        document.body.classList.toggle('dark-mode');
+    });
 });
