@@ -6,8 +6,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let stations = {};
 
-    // بارگذاری داده‌های مترو از آدرس JSON با استفاده از پروکسی
-    fetch('https://cors-anywhere.herokuapp.com/https://m4tinbeigi-official.github.io/tehran-metro-data/data/stations.json')
+    // بارگذاری داده‌های مترو از آدرس JSON
+    fetch('https://m4tinbeigi-official.github.io/tehran-metro-data/data/stations.json')
         .then(response => response.json())
         .then(data => {
             stations = data;
