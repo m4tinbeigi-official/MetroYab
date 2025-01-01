@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const sourceSelect = document.getElementById('source');
     const destinationSelect = document.getElementById('destination');
     const findRouteButton = document.getElementById('find-route');
+    const saveRouteButton = document.getElementById('save-route');
+    const shareRouteButton = document.getElementById('share-route');
+    const printRouteButton = document.getElementById('print-route');
     const routeResult = document.getElementById('route-result');
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const map = L.map('map').setView([35.6892, 51.3890], 12); // مختصات تهران
@@ -11,6 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }).addTo(map);
 
     let stations = {};
+    let savedRoutes = JSON.parse(localStorage.getItem('savedRoutes')) || [];
 
     // بارگذاری داده‌های مترو از آدرس JSON با استفاده از پروکسی
     fetch('https://cors-anywhere.herokuapp.com/https://m4tinbeigi-official.github.io/tehran-metro-data/data/stations.json')
@@ -140,5 +144,48 @@ document.addEventListener('DOMContentLoaded', function () {
     // حالت تاریک
     darkModeToggle.addEventListener('click', function () {
         document.body.classList.toggle('dark-mode');
+    });
+
+    // ذخیره مسیر
+    saveRouteButton.addEventListener('click', function () {
+        const sourceKey = sourceSelect.value;
+        const destinationKey = destinationSelect.value;
+
+        if (!sourceKey || !destinationKey) {
+            alert('لطفاً ایستگاه مبدأ و مقصد را انتخاب کنید.');
+            return;
+        }
+
+        const route = findRoute(sourceKey, destinationKey);
+        if (route) {
+            savedRoutes.push({ source: sourceKey, destination: destinationKey, route: route });
+            localStorage.setItem('savedRoutes', JSON.stringify(savedRoutes));
+            alert('مسیر ذخیره شد!');
+        }
+    });
+
+    // به‌اشتراک‌گذاری مسیر
+    shareRouteButton.addEventListener('click', function () {
+        const sourceKey = sourceSelect.value;
+        const destinationKey = destinationSelect.value;
+
+        if (!sourceKey || !destinationKey) {
+            alert('لطفاً ایستگاه مبدأ و مقصد را انتخاب کنید.');
+            return;
+        }
+
+        const route = findRoute(sourceKey, destinationKey);
+        if (route) {
+            const routeText = route.map(stationKey => stations[stationKey].translations.fa).join(' -> ');
+            const shareUrl = `${window.location.href}?source=${sourceKey}&destination=${destinationKey}`;
+            navigator.clipboard.writeText(`مسیر مترو: ${routeText}\nلینک مسیر: ${shareUrl}`)
+                .then(() => alert('مسیر کپی شد!'))
+                .catch(() => alert('خطا در کپی کردن مسیر!'));
+        }
+    });
+
+    // چاپ مسیر
+    printRouteButton.addEventListener('click', function () {
+        window.print();
     });
 });
