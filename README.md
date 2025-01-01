@@ -10,7 +10,7 @@
 
 ## اهمیت پروژه mostafa-kheibary
 
-این پروژه به طور کامل وابسته به داده‌های ارائه‌شده توسط [Tehran Metro Data](https://github.com/mostafa-kheibary/tehran-metro-data) است. **اگر پروژه کاربر mostafa-kheibary نبود، MetroYab نیز وجود نداشت**. ما از زحمات و تلاش‌های mostafa-kheibary برای جمع‌آوری و به‌روزرسانی این داده‌ها قدردانی می‌کنیم و امیدواریم این همکاری بتواند به بهبود خدمات مترو تهران کمک کند.
+این پروژه به طور کامل وابسته به داده‌های ارائه‌شده توسط [Tehran Metro Data](https://github.com/mostafa-kheibary/tehran-metro-data) است. **اگر پروژه [mostafa-kheibary](https://github.com/mostafa-kheibary) نبود، MetroYab نیز وجود نداشت**. ما از زحمات و تلاش‌های mostafa-kheibary برای جمع‌آوری و به‌روزرسانی این داده‌ها قدردانی می‌کنیم و امیدواریم این همکاری بتواند به بهبود خدمات مترو تهران کمک کند.
 
 ## مشاهده پروژه
 
