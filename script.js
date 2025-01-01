@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fetch('https://m4tinbeigi-official.github.io/tehran-metro-data/data/stations.json')
         .then(response => response.json())
         .then(data => {
+            console.log(data); // چاپ داده‌ها در کنسول
             stations = data;
             populateSelects();
             initializeSelect2();
@@ -64,8 +65,42 @@ document.addEventListener('DOMContentLoaded', function () {
         displayRoute(route);
     });
 
+    // بررسی خطوط مشترک
+    function hasCommonLine(sourceKey, destinationKey) {
+        const sourceLines = stations[sourceKey].lines;
+        const destinationLines = stations[destinationKey].lines;
+        return sourceLines.some(line => destinationLines.includes(line));
+    }
+
+    // پیدا کردن مسیر مستقیم در یک خط
+    function findDirectRoute(sourceKey, destinationKey) {
+        const commonLine = stations[sourceKey].lines.find(line => stations[destinationKey].lines.includes(line));
+        if (!commonLine) return null;
+
+        const route = [sourceKey];
+        let currentStation = sourceKey;
+
+        while (currentStation !== destinationKey) {
+            const nextStation = stations[currentStation].relations.find(neighbor => 
+                stations[neighbor].lines.includes(commonLine)
+            );
+            if (!nextStation) return null;
+            route.push(nextStation);
+            currentStation = nextStation;
+        }
+
+        return route;
+    }
+
     // الگوریتم ساده برای پیدا کردن مسیر (BFS)
     function findRoute(sourceKey, destinationKey) {
+        // اگر مبدأ و مقصد در یک خط هستند، مسیر مستقیم را پیدا کنید
+        if (hasCommonLine(sourceKey, destinationKey)) {
+            const directRoute = findDirectRoute(sourceKey, destinationKey);
+            if (directRoute) return directRoute;
+        }
+
+        // در غیر این صورت، از BFS استفاده کنید
         const queue = [{ station: sourceKey, path: [sourceKey] }];
         const visited = new Set();
 
