@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let savedRoutes = JSON.parse(localStorage.getItem('savedRoutes')) || [];
 
     // بارگذاری داده‌های مترو از آدرس JSON با استفاده از پروکسی
-    fetch('https://cors-anywhere.herokuapp.com/https://m4tinbeigi-official.github.io/tehran-metro-data/data/stations.json')
+    fetch('https://m4tinbeigi-official.github.io/tehran-metro-data/data/stations.json')
         .then(response => response.json())
         .then(data => {
             stations = data;
