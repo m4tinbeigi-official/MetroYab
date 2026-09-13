@@ -1,3 +1,10 @@
+<!-- DevSponsors Badges -->
+<p align="center">
+  <a href="https://devsponsors.github.io"><img src="https://img.shields.io/badge/DevSponsors-Verified_OSS-6366f1?style=for-the-badge&logo=github" alt="DevSponsors Verified"></a>
+  <a href="https://devsponsors.github.io"><img src="https://img.shields.io/badge/Sponsor-DevSponsors_Hub-emerald?style=for-the-badge&logo=github-sponsors" alt="DevSponsors Sponsor"></a>
+  <a href="https://devsponsors.github.io/mediakit.html"><img src="https://img.shields.io/badge/Infrastructure-DevSponsors_Cloud-ec4899?style=for-the-badge&logo=server" alt="DevSponsors Cloud"></a>
+</p>
+
 # MetroYab
 
 **MetroYab** یک پروژه متن‌باز (Open Source) است که به کاربران کمک می‌کند تا به راحتی اطلاعات مربوط به ایستگاه‌های مترو تهران را جستجو کرده و بهترین مسیرها را برای سفرهای خود پیدا کنند. این پروژه با استفاده از داده‌های عمومی و به‌روز مترو تهران، به کاربران این امکان را می‌دهد تا به سرعت و با دقت بالا، مسیرهای بهینه را شناسایی کنند.
